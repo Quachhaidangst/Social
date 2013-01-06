@@ -28,11 +28,9 @@
                 console.log("Error getting picture: " + e);
                 document.getElementById('camera_status').innerHTML = "Error getting picture.";
             },
-            { quality : 75, 
-			  destinationType : Camera.DestinationType.DATA_URL, 
+            { quality : 100, 
+			  destinationType : Camera.DestinationType.FILE_URI, 
 			  sourceType : Camera.PictureSourceType.CAMERA, 
-			  allowEdit : true,
-			  encodingType: Camera.EncodingType.PNG,
 			  targetWidth: 100,
 			  targetHeight: 100 
 			});
