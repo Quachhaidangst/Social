@@ -42,6 +42,14 @@
     /**
      * Take picture with camera
      */
+	 
+	 function takePicture() {
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, 
+				{ 	quality: 50, 
+					destinationType: destinationType.FILE_URI,
+				});
+    };
+	 
     function getPicture(source) {
         navigator.camera.getPicture(onPhotoURISuccess, onFail, 
 				{ 	quality: 50, 
@@ -137,7 +145,7 @@
         
     <!-- Actions -->
     <div>
-        <input type="button" onclick="getPicture(pictureSource.CAMERA);" value="Take Picture" /><br/>
+        <input type="button" onclick="takePicture();" value="Take Picture" /><br/>
         <input type="button" onclick="getPicture(pictureSource.PHOTOLIBRARY);" value="Select Picture from Library" /><br/>
         <input type="button" onclick="uploadPicture();" value="Upload Picture" />
     </div>
