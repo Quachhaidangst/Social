@@ -9,52 +9,47 @@
     </style>
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8">
-      
-    var deviceReady = false;
 
+	var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoURISuccess(imageURI) {
+		var img = document.getElementById('camera_image');
+        img.style.visibility = "visible";
+        img.style.display = "block";
+        img.src = uri;
+        document.getElementById('camera_status').innerHTML = "Success";
+    }
+
+	function onFail(message) {
+		console.log("Error getting picture: " + e);
+        document.getElementById('camera_status').innerHTML = "Error getting picture. " + e;
+    }
+	
     /**
      * Take picture with camera
      */
-    function takePicture() {
-        navigator.camera.getPicture(
-            function(uri) {
-                var img = document.getElementById('camera_image');
-                img.style.visibility = "visible";
-                img.style.display = "block";
-                img.src = uri;
-                document.getElementById('camera_status').innerHTML = "Success";
-            },
-            function(e) {
-                console.log("Error getting picture: " + e);
-                document.getElementById('camera_status').innerHTML = "Error getting picture. " + e;
-            },
-            { quality : 100, 
-			  destinationType : Camera.DestinationType.FILE_URI, 
-			  sourceType : Camera.PictureSourceType.CAMERA, 
-			  targetWidth: 100,
-			  targetHeight: 100 
-			});
+    function getPicture(source) {
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, 
+				{ 	quality: 50, 
+					destinationType: destinationType.FILE_URI,
+					sourceType: source 
+				});
     };
 
-    /**
-     * Select picture from library
-     */
-    function selectPicture() {
-        navigator.camera.getPicture(
-            function(uri) {
-                var img = document.getElementById('camera_image');
-                img.style.visibility = "visible";
-                img.style.display = "block";
-                img.src = uri;
-                document.getElementById('camera_status').innerHTML = "Success";
-            },
-            function(e) {
-                console.log("Error getting picture: " + e);
-                document.getElementById('camera_status').innerHTML = "Error getting picture.";
-            },
-            { quality: 50, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY});
-    };
-    
     /**
      * Upload current picture
      */
@@ -120,18 +115,6 @@
             xmlhttp.send();       	
         }	
     }
-    
-    /**
-     * Function called when page has finished loading.
-     */
-    function init() {
-        document.addEventListener("deviceready", function() {deviceReady = true;}, false);
-        window.setTimeout(function() {
-            if (!deviceReady) {
-                alert("Error: PhoneGap did not initialize.  Demo will not run correctly.");
-            }
-        },5000);
-    }
 
     </script>
 
@@ -154,8 +137,8 @@
         
     <!-- Actions -->
     <div>
-        <input type="button" onclick="takePicture();" value="Take Picture" /><br/>
-        <input type="button" onclick="selectPicture();" value="Select Picture from Library" /><br/>
+        <input type="button" onclick="getPicture(pictureSource.CAMERA);" value="Take Picture" /><br/>
+        <input type="button" onclick="getPicture(pictureSource.PHOTOLIBRARY);" value="Select Picture from Library" /><br/>
         <input type="button" onclick="uploadPicture();" value="Upload Picture" />
     </div>
     <br/>
