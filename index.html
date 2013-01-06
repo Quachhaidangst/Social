@@ -30,13 +30,13 @@
 		var img = document.getElementById('camera_image');
         img.style.visibility = "visible";
         img.style.display = "block";
-        img.src = uri;
+        img.src = imageURI;
         document.getElementById('camera_status').innerHTML = "Success";
     }
 
 	function onFail(message) {
-		console.log("Error getting picture: " + e);
-        document.getElementById('camera_status').innerHTML = "Error getting picture. " + e;
+		console.log("Error getting picture: " + message);
+        document.getElementById('camera_status').innerHTML = "Error getting picture. " + message;
     }
 	
     /**
