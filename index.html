@@ -26,7 +26,7 @@
             },
             function(e) {
                 console.log("Error getting picture: " + e);
-                document.getElementById('camera_status').innerHTML = "Error getting picture.";
+                document.getElementById('camera_status').innerHTML = "Error getting picture. " + e;
             },
             { quality : 100, 
 			  destinationType : Camera.DestinationType.FILE_URI, 
