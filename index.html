@@ -73,11 +73,6 @@
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
             options.mimeType="image/jpeg";
             options.chunkedMode = false;
-			
-			var params = new Object();
-			params.userId="qhdang";
-			params.userPass="admin";
-			options.params = params;
 
             // Transfer picture to server
             var ft = new FileTransfer();
