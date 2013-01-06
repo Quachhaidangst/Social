@@ -28,10 +28,13 @@
                 console.log("Error getting picture: " + e);
                 document.getElementById('camera_status').innerHTML = "Error getting picture.";
             },
-            { 
-				quality: 50, 
-				destinationType: navigator.camera.DestinationType.FILE_URI,
-				sourceType : Camera.PictureSourceType.CAMERA
+            { quality : 75, 
+			  destinationType : Camera.DestinationType.DATA_URL, 
+			  sourceType : Camera.PictureSourceType.CAMERA, 
+			  allowEdit : true,
+			  encodingType: Camera.EncodingType.PNG,
+			  targetWidth: 100,
+			  targetHeight: 100 
 			});
     };
 
@@ -129,7 +132,7 @@
             if (!deviceReady) {
                 alert("Error: PhoneGap did not initialize.  Demo will not run correctly.");
             }
-        },2000);
+        },5000);
     }
 
     </script>
