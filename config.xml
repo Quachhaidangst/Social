@@ -3,7 +3,7 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.phonegap.hello-world"
         version   = "1.5.0">
-    <name>Social</name>
+    <name>Test</name>
 
     <description>
         Social network - post your favorite photo.

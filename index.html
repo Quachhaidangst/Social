@@ -81,6 +81,11 @@
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
             options.mimeType="image/jpeg";
             options.chunkedMode = false;
+			
+			var params = new Object();
+			params.user = "qhdang";
+			params.pass="admin";
+			options.params = params;
 
             // Transfer picture to server
             var ft = new FileTransfer();
@@ -132,7 +137,7 @@
     
     <div>
         <h3>Server URL for upload.php:</h3>
-        <input id="serverUrl" type="text" value="http://192.168.1.5:8080/social/mobile/Upload" />
+        <input id="serverUrl" type="text" value="http://192.168.1.1055:8080/social/Upload" />
     </div>
     <br/>
 
